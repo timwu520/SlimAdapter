@@ -1,14 +1,13 @@
 package net.idik.lib.slimadapter.exampleforkotlin
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.annotation.IntegerRes
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.widget.Toast
 import net.idik.lib.slimadapter.SlimAdapter
-
-import java.util.ArrayList
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private val recyclerView: RecyclerView by lazy<RecyclerView> {
@@ -19,24 +18,28 @@ class MainActivity : AppCompatActivity() {
 
     private val adapter by lazy {
         SlimAdapter.create()
-                .register<String>(R.layout.item_string) { data, injector ->
+                .register<String>(R.layout.item_string) { data, injector, position ->
+                    Log.i(MainActivity::class.java.simpleName, "position : $position")
                     injector.text(R.id.text, data)
                 }
-                .register<User>(R.layout.item_user) { data, injector ->
+                .register<User>(R.layout.item_user) { data, injector, position ->
+                    Log.i(MainActivity::class.java.simpleName, "position : $position")
                     injector.text(R.id.name, data.name)
                             .text(R.id.age, data.age.toString())
                             .clicked(R.id.name) {
                                 Toast.makeText(this@MainActivity, "click user name", Toast.LENGTH_LONG).show()
                             }
                 }
-                .register<Int>(R.layout.item_interger) { data, injector ->
+                .register<Int>(R.layout.item_interger) { data, injector, position ->
+                    Log.i(MainActivity::class.java.simpleName, "position : $position")
                     injector.text(R.id.text, data.toString())
                             .longClicked(R.id.text) {
                                 Toast.makeText(this@MainActivity, "longclick int", Toast.LENGTH_LONG).show()
                                 true
                             }
                 }
-                .registerDefault(R.layout.item_string) { data, injector ->
+                .registerDefault(R.layout.item_string) { data, injector, position ->
+                    Log.i(MainActivity::class.java.simpleName, "position : $position")
                     injector.text(R.id.text, data.toString())
                             .clicked(R.id.text) {
                                 Toast.makeText(this@MainActivity, "click default", Toast.LENGTH_LONG).show()

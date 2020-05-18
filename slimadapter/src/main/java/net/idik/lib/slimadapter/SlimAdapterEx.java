@@ -1,7 +1,9 @@
 package net.idik.lib.slimadapter;
 
 import android.content.Context;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -183,7 +185,7 @@ public class SlimAdapterEx extends SlimAdapter {
         }
 
         @Override
-        protected void onBind(Object data, IViewInjector injector) {
+        protected void onBind(Object data, IViewInjector injector, int position) {
 
         }
     }

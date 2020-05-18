@@ -7,5 +7,5 @@ import net.idik.lib.slimadapter.viewinjector.IViewInjector;
  */
 
 public interface SlimInjector<T> {
-    void onInject(T data, IViewInjector injector);
+    void onInject(T data, IViewInjector injector, int position);
 }

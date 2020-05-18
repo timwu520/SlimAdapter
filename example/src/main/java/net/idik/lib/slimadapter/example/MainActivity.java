@@ -3,12 +3,14 @@ package net.idik.lib.slimadapter.example;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
@@ -80,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
         slimAdapter = SlimAdapter.create()
                 .register(R.layout.item_user, new SlimInjector<User>() {
                     @Override
-                    public void onInject(User data, IViewInjector injector) {
+                    public void onInject(User data, IViewInjector injector, int position) {
+                        Log.i(MainActivity.class.getSimpleName(), "position : " + position);
                         injector.text(R.id.name, data.getName())
                                 .image(R.id.avatar, data.getAvatarRes())
                                 .text(R.id.phone, data.getPhone())
@@ -90,13 +93,15 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .register(R.layout.item_setion_header, new SlimInjector<SectionHeader>() {
                     @Override
-                    public void onInject(SectionHeader data, IViewInjector injector) {
+                    public void onInject(SectionHeader data, IViewInjector injector, int position) {
+                        Log.i(MainActivity.class.getSimpleName(), "position : " + position);
                         injector.text(R.id.section_title, data.getTitle());
                     }
                 })
                 .register(R.layout.item_image, new SlimInjector<Image>() {
                     @Override
-                    public void onInject(final Image data, IViewInjector injector) {
+                    public void onInject(final Image data, IViewInjector injector, int position) {
+                        Log.i(MainActivity.class.getSimpleName(), "position : " + position);
                         injector.with(R.id.imageView, new IViewInjector.Action<ImageView>() {
                             @Override
                             public void action(ImageView view) {
@@ -107,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .register(R.layout.item_music, new SlimInjector<Music>() {
                     @Override
-                    public void onInject(Music data, IViewInjector injector) {
+                    public void onInject(Music data, IViewInjector injector, int position) {
+                        Log.i(MainActivity.class.getSimpleName(), "position : " + position);
                         injector.text(R.id.name, data.getName())
                                 .image(R.id.cover, data.getCoverRes());
                     }

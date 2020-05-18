@@ -29,14 +29,14 @@ public abstract class SlimViewHolder<D> extends RecyclerView.ViewHolder {
         viewMap = new SparseArray<>();
     }
 
-    final void bind(D data) {
+    final void bind(D data, int position) {
         if (injector == null) {
             injector = new DefaultViewInjector(this);
         }
-        onBind(data, injector);
+        onBind(data, injector, position);
     }
 
-    protected abstract void onBind(D data, IViewInjector injector);
+    protected abstract void onBind(D data, IViewInjector injector, int position);
 
     public final <T extends View> T id(int id) {
         View view = viewMap.get(id);

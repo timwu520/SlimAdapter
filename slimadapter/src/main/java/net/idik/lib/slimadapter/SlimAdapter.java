@@ -3,9 +3,10 @@ package net.idik.lib.slimadapter;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.view.ViewGroup;
+
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.ViewGroup;
 
 import net.idik.lib.slimadapter.diff.DefaultDiffCallback;
 import net.idik.lib.slimadapter.diff.SlimDiffUtil;
@@ -180,8 +181,8 @@ public class SlimAdapter extends AbstractSlimAdapter {
             public SlimTypeViewHolder create(ViewGroup parent) {
                 return new SlimTypeViewHolder(parent, layoutRes) {
                     @Override
-                    protected void onBind(Object data, IViewInjector injector) {
-                        slimInjector.onInject(data, injector);
+                    protected void onBind(Object data, IViewInjector injector, int position) {
+                        slimInjector.onInject(data, injector, position);
 
                     }
                 };
@@ -200,8 +201,8 @@ public class SlimAdapter extends AbstractSlimAdapter {
             public SlimTypeViewHolder<T> create(ViewGroup parent) {
                 return new SlimTypeViewHolder<T>(parent, layoutRes) {
                     @Override
-                    protected void onBind(T data, IViewInjector injector) {
-                        slimInjector.onInject(data, injector);
+                    protected void onBind(T data, IViewInjector injector, int position) {
+                        slimInjector.onInject(data, injector, position);
                     }
                 };
             }

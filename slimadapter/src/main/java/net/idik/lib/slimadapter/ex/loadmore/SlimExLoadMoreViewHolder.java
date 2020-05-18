@@ -16,6 +16,7 @@ public class SlimExLoadMoreViewHolder extends SlimViewHolder<SlimMoreLoader> {
     }
 
     @Override
-    protected void onBind(SlimMoreLoader data, IViewInjector injector) {
+    protected void onBind(SlimMoreLoader data, IViewInjector injector, int position) {
+        //do nothing here.
     }
 }
